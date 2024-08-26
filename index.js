@@ -1,4 +1,6 @@
 // TODO: Include packages needed for this application
+const inquirer = require("inquirer");
+const colors = require("colors");
 
 // TODO: Create an array of questions for user input
 const questions = [];
