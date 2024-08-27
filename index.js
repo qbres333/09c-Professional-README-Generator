@@ -13,25 +13,26 @@ const questions = [
   {
     type: "input",
     message: colors.brightCyan(
-      "Type a detailed description of your project. Separate paragraphs using <br><br>"
+      "Type a detailed description of your project. Separate paragraphs with double commas (,,)"
     ),
     name: "description",
   },
-  {
-    type: "confirm",
-    message: colors.brightCyan(
-      "Would you like to include a table of contents in your README?"
-    ),
-    name: "askContents",
-  },
-  {
-    type: "input",
-    message: colors.brightCyan(
-      "Enter your table of contents labels, separated by a double comma (,,)."
-    ),
-    name: "tableOfContents",
-    when: (answers) => answers.askContents === true,
-  },
+// We do not ask user for the TOC, we create it
+//   {
+//     type: "confirm",
+//     message: colors.brightCyan(
+//       "Would you like to include a table of contents in your README?"
+//     ),
+//     name: "askContents",
+//   },
+//   {
+//     type: "input",
+//     message: colors.brightCyan(
+//       "Enter your table of contents labels, separated by double commas (,,)."
+//     ),
+//     name: "tableOfContents",
+//     when: (answers) => answers.askContents === true,
+//   },
   {
     type: "input",
     message: colors.brightCyan(
@@ -53,76 +54,81 @@ const questions = [
     ),
     name: "credits",
   },
-  {
-    type: "input",
-    message: colors.brightCyan("Provide the license used for your project."),
-    name: "license",
-  },
-  {
-    type: "confirm",
-    message: colors.brightCyan(
-      "Do you want to include badges related to your project?"
-    ),
-    name: "askBadges",
-  },
-  {
-    type: "input",
-    message: colors.brightCyan("Enter the badges for your project, separated by <br>"),
-    name: "badges",
-    when: (answers) => answers.askBadges === true,
-  },
+
+  //   {
+  //     type: "confirm",
+  //     message: colors.brightCyan(
+  //       "Do you want to include badges related to your project?"
+  //     ),
+  //     name: "askBadges",
+  //   },
+  //   {
+  //     type: "input",
+  //     message: colors.brightCyan(
+  //       "Enter the badges for your project, separated by double commas (,,)"
+  //     ),
+  //     name: "badges",
+  //     when: (answers) => answers.askBadges === true,
+  //   },
   {
     type: "input",
     message: colors.brightCyan("Describe the features of your project."),
     name: "features",
   },
   {
-    type: "confirm",
-    message: colors.brightCyan(
-      "Would you like others to contribute to your project?"
-    ),
-    name: "askContribute",
-  },
-  {
     type: "input",
     message: colors.brightCyan(
       "Explain how others can contribute to your project."
     ),
-    name: "howToContribute",
-    when: (answers) => answers.askContribute === true,
-  },
-  {
-    type: "confirm",
-    message: colors.brightCyan(
-      "Would you like include tests for your project?"
-    ),
-    name: "askTests",
+    name: "contributing",
   },
   {
     type: "input",
     message: colors.brightCyan(
-      "Describe the tests users can do with your project. Separate tests by <br><br> if needed."
+      "Describe the tests users can do with your project. Separate tests by double commas (,,) if needed."
     ),
     name: "tests",
-    when: (answers) => answers.askTests === true,
+  },
+  {
+    type: "list",
+    message: colors.brightCyan("Which license was used for your project?"),
+    name: "license",
+    choices: [
+      "Apache License 2.0",
+      "GNU General Public License v3.0",
+      "ISC",
+      "MIT",
+    ],
+  },
+  {
+    /* Questions is a section at the bottom of the file that will hold the 
+    responses to github username (then code profile link), user email address */
+    type: "input",
+    message: colors.brightCyan("What is your GitHub username?"),
+    name: "gitUsername",
+  },
+  {
+    type: "input",
+    message: colors.brightCyan("What is your email address?"),
+    name: "email",
   },
 ];
 
 // from class activities
-inquirer
-  .prompt([//array of questions
-  ])
-  .then((response) => {
-    // code
+// inquirer
+//   .prompt([//array of questions
+//   ])
+//   .then((response) => {
+//     // code
 
-    fs.writeFile("log.txt", JSON.stringify(response, null, "\t"), (err) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log("Success!");
-      }
-    });
-  });
+//     fs.writeFile("log.txt", JSON.stringify(response, null, "\t"), (err) => {
+//       if (err) {
+//         console.error(err);
+//       } else {
+//         console.log("Success!");
+//       }
+//     });
+//   });
 
 
 
@@ -130,36 +136,42 @@ inquirer
 function writeReadme() {
   inquirer.prompt(questions)
   .then((response) => {
-    // store responses in an object
+    // store responses in an object, then retrieve values later in strings
     const readmeData = {
       projectTitle: response.projectTitle,
-      description: response.description,
+      description: response.description.replace(/,,/g, "<br><br>"),
       askContents: response.askContents,
       /*If there's a TOC, replace commas with line breaks and include other markdown syntax
         in the string (down below the object)*/
       tableOfContents: response.tableOfContents
-        ? response.tableOfContents.replace(/,,/g, "<br>")
+        ? response.tableOfContents.replace(/,,/g, "<br>") //do this in string
         : "",
       installation: response.installation,
       usage: response.usage,
       credits: response.credits,
       license: response.license,
       askBadges: response.askBadges,
-      badges: response.badges ? response.badges : "",
+      badges: response.badges ? response.badges.replace(/,,/g, "<br>") : "",
       features: response.features,
       askContribute: response.askContribute,
       howToContribute: response.howToContribute ? response.howToContribute : "",
       askTests: response.askTests,
-      tests: response.tests ? response.tests : "",
+      tests: response.tests ? response.tests.replace(/,,/g, "<br><br>") : "",
     };
     // using <br><br> instead of double trailing spaces; test output
     // build README conditionally
     let inputString = `#${readmeData.projectTitle}<br><br>
-    ##Description<br><br>${readmeData.description}<br><br>
-    `;
+    ##Description<br><br>${readmeData.description}<br><br>`;
+
     // if table of contents exists, add it to the README
     if (readmeData.tableOfContents != "") {
-      inputString += `##Table of Contents<br><br>${readmeData.tableOfContents}<br><br>`;
+        // response.tableOfContents.replace(/,,/g, "<br>");
+        const contentsArray = response.tableOfContents.split(",,");
+        for(const contentsLabel of contentsArray) {
+            return `- ${contentsLabel} (#)`
+        }
+
+        inputString += `##Table of Contents<br><br>${readmeData.tableOfContents}<br><br>`;
     }
 
     // add other required elements of the README
@@ -171,7 +183,7 @@ function writeReadme() {
 
     // if badges exist, add to the README
     if (readmeData.badges != "") {
-      inputString += `##Badges<br><br>${readmeData.badges}<br><br>`;
+        inputString += `##Badges<br><br>${readmeData.badges}<br><br>`;
     }
     //add features to the README
     inputString += `##Features<br><br>${readmeData.features}<br><br>`
