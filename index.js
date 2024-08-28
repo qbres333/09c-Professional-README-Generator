@@ -104,7 +104,7 @@ const questions = [
 function writeReadme() {
   inquirer.prompt(questions)
   .then((response) => {
-    // store responses in an object, then retrieve values later in strings
+    // store responses in an object, then retrieve values later in string
     const readmeData = {
       projectTitle: response.projectTitle,
       description: response.description.replace(/,,/g, "<br><br>"),
@@ -144,18 +144,66 @@ function writeReadme() {
 
 
     // add a badge for the license
-    if (readmeData.license == "") {
-        
-      inputString += `##Badges<br><br>${readmeData.badges}<br><br>`;
+    if (readmeData.license == "Apache License 2.0") {
+        const apacheBadge = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`;
+        const newString = `${apacheBadge}\n\n${inputString}`;
+
+        fs.writeFile("proREADME.md", newString, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("Success!");
+        }
+        });
+    //   inputString += `##Badges<br><br>${readmeData.badges}<br><br>`;
+    } else if (readmeData.license == "GNU General Public License v3.0") {
+        const gnuBadge = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`;
+        const newString = `${gnuBadge}\n\n${inputString}`;
+
+        fs.writeFile("proREADME.md", newString, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("Success!");
+        }
+        });
+    } else if (readmeData.license == "ISC license") {
+        const iscBadge = `[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)`;
+        const newString = `${iscBadge}\n\n${inputString}`;
+
+        fs.writeFile("proREADME.md", newString, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("Success!");
+        }
+        });
+    } else {
+        const mitBadge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`;
+        const newString = `${mitBadge}\n\n${inputString}`;
+
+        fs.writeFile("proREADME.md", newString, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("Success!");
+        }
+        });
     }
 
-    fs.writeFile("proREADME.md", inputString, (err) => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log("Success!");
-    }
-    });
+    /** "Apache License 2.0",
+      "GNU General Public License v3.0",
+      "ISC license",
+      "MIT license", */
+
+    //   move to IF statements?
+    // fs.writeFile("proREADME.md", newString, (err) => {
+    //     if (err) {
+    //         console.error(err);
+    //     } else {
+    //         console.log("Success!");
+    //     }
+    // });
 
   });
 }
