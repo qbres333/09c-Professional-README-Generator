@@ -105,6 +105,7 @@ function writeReadme() {
     };
 
     // using <br><br> instead of double trailing spaces
+    // in the TOC, the anchor syntax is all lowercase and replaces spaces with hyphens
     // build README
     let inputString = `#${readmeData.projectTitle}<br><br>
     ##Description<br><br>${readmeData.description}<br><br>
@@ -129,7 +130,7 @@ function writeReadme() {
     `;
 
 
-    // add a badge for the license
+    // add a badge for the license to the top of the README file
     if (readmeData.license == "Apache License 2.0") {
         const apacheBadge = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`;
         const newString = `${apacheBadge}\n\n${inputString}`;
