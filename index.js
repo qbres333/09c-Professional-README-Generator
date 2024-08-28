@@ -17,22 +17,6 @@ const questions = [
     ),
     name: "description",
   },
-// We do not ask user for the TOC, we create it
-//   {
-//     type: "confirm",
-//     message: colors.brightCyan(
-//       "Would you like to include a table of contents in your README?"
-//     ),
-//     name: "askContents",
-//   },
-//   {
-//     type: "input",
-//     message: colors.brightCyan(
-//       "Enter your table of contents labels, separated by double commas (,,)."
-//     ),
-//     name: "tableOfContents",
-//     when: (answers) => answers.askContents === true,
-//   },
   {
     type: "input",
     message: colors.brightCyan(
@@ -54,22 +38,6 @@ const questions = [
     ),
     name: "credits",
   },
-
-  //   {
-  //     type: "confirm",
-  //     message: colors.brightCyan(
-  //       "Do you want to include badges related to your project?"
-  //     ),
-  //     name: "askBadges",
-  //   },
-  //   {
-  //     type: "input",
-  //     message: colors.brightCyan(
-  //       "Enter the badges for your project, separated by double commas (,,)"
-  //     ),
-  //     name: "badges",
-  //     when: (answers) => answers.askBadges === true,
-  //   },
   {
     type: "input",
     message: colors.brightCyan("Describe the features of your project."),
@@ -96,8 +64,8 @@ const questions = [
     choices: [
       "Apache License 2.0",
       "GNU General Public License v3.0",
-      "ISC",
-      "MIT",
+      "ISC license",
+      "MIT license",
     ],
   },
   {
@@ -140,61 +108,45 @@ function writeReadme() {
     const readmeData = {
       projectTitle: response.projectTitle,
       description: response.description.replace(/,,/g, "<br><br>"),
-      askContents: response.askContents,
-      /*If there's a TOC, replace commas with line breaks and include other markdown syntax
-        in the string (down below the object)*/
-      tableOfContents: response.tableOfContents
-        ? response.tableOfContents.replace(/,,/g, "<br>") //do this in string
-        : "",
       installation: response.installation,
       usage: response.usage,
       credits: response.credits,
-      license: response.license,
-      askBadges: response.askBadges,
-      badges: response.badges ? response.badges.replace(/,,/g, "<br>") : "",
       features: response.features,
-      askContribute: response.askContribute,
-      howToContribute: response.howToContribute ? response.howToContribute : "",
-      askTests: response.askTests,
-      tests: response.tests ? response.tests.replace(/,,/g, "<br><br>") : "",
+      contributing: response.contributing,
+      tests: response.tests,
+      license: response.license,
+      gitUsername: response.gitUsername,
+      email: response.email
     };
     // using <br><br> instead of double trailing spaces; test output
-    // build README conditionally
+    // build README
     let inputString = `#${readmeData.projectTitle}<br><br>
-    ##Description<br><br>${readmeData.description}<br><br>`;
-
-    // if table of contents exists, add it to the README
-    if (readmeData.tableOfContents != "") {
-        // response.tableOfContents.replace(/,,/g, "<br>");
-        const contentsArray = response.tableOfContents.split(",,");
-        for(const contentsLabel of contentsArray) {
-            return `- ${contentsLabel} (#)`
-        }
-
-        inputString += `##Table of Contents<br><br>${readmeData.tableOfContents}<br><br>`;
-    }
-
-    // add other required elements of the README
-    inputString += `##Installation<br><br>${readmeData.installation}<br><br>
+    ##Description<br><br>${readmeData.description}<br><br>
+    ##Table of Contents<br><br>
+    - [Installation] (#installation)<br>
+    - [Usage] (#usage)<br>
+    - [Credits] (#credits)<br>
+    - [Features] (#features)<br>
+    - [Contributing] (#contributing)<br>
+    - [Tests] (#tests)<br>
+    - [License] (#license)<br>
+    - [Questions] (#questions)<br><br>
+    ##Installation<br><br>${readmeData.installation}<br><br>
     ##Usage<br><br>${readmeData.usage}<br><br>
     ##Credits<br><br>${readmeData.credits}<br><br>
-    ##License<br><br>${readmeData.license}<br><br>
+    ##Features<br><br>${readmeData.features}<br><br>
+    ##Contributing<br><br>${readmeData.contributing}<br><br>
+    ##Tests<br><br>${readmeData.tests}<br><br>
+    ##License<br><br>This application uses the ${readmeData.license}<br><br>
+    ##Questions<br><br>GitHub Profile: https://github.com/${readmeData.gitUsername}<br><br>
+    If you have additional questions, please contact me at ${readmeData.email}
     `;
 
-    // if badges exist, add to the README
-    if (readmeData.badges != "") {
-        inputString += `##Badges<br><br>${readmeData.badges}<br><br>`;
-    }
-    //add features to the README
-    inputString += `##Features<br><br>${readmeData.features}<br><br>`
 
-    // if the user wants contributors, add to the README
-    if (readmeData.howToContribute != "") {
-        inputString += `##How To Contribute<br><br>${readmeData.howToContribute}<br><br>`
-    }
-    // if user included tests, add to the README
-    if (readmeData.tests != "") {
-        inputString += `##Tests<br><br>${readmeData.tests}<br><br>`;
+    // add a badge for the license
+    if (readmeData.license == "") {
+        
+      inputString += `##Badges<br><br>${readmeData.badges}<br><br>`;
     }
 
     fs.writeFile("proREADME.md", inputString, (err) => {
