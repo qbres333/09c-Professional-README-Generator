@@ -13,47 +13,49 @@ const questions = [
   {
     type: "input",
     message: colors.brightCyan(
-      "Type a detailed description of your project. Separate paragraphs with double commas (,,)"
+      "Type a detailed description of your project. Separate paragraphs with double commas (,,):"
     ),
     name: "description",
   },
   {
     type: "input",
     message: colors.brightCyan(
-      "What are the steps required to install your project (i.e. get the development environment running)?"
+      "What are the steps required to install your project (i.e. get the development environment running)? Separate paragraphs with double commas (,,):"
     ),
     name: "installation",
   },
   {
     type: "input",
     message: colors.brightCyan(
-      "Provide instructions and examples for use. Include screenshots with relevant syntax as needed."
+      "Provide instructions and examples for use. Include screenshots with relevant syntax as needed. Separate paragraphs with double commas (,,):"
     ),
     name: "usage",
   },
   {
     type: "input",
     message: colors.brightCyan(
-      "List any collaborators (if any) with links to their GitHub profiles, or third-party assets employed."
+      "List any collaborators (if any) with links to their GitHub profiles, or third-party assets employed. Separate paragraphs with double commas (,,):"
     ),
     name: "credits",
   },
   {
     type: "input",
-    message: colors.brightCyan("Describe the features of your project."),
+    message: colors.brightCyan(
+      "Describe the features of your project. Separate paragraphs with double commas (,,):"
+    ),
     name: "features",
   },
   {
     type: "input",
     message: colors.brightCyan(
-      "Explain how others can contribute to your project."
+      "Explain how others can contribute to your project. Separate paragraphs with double commas (,,):"
     ),
     name: "contributing",
   },
   {
     type: "input",
     message: colors.brightCyan(
-      "Describe the tests users can do with your project. Separate tests by double commas (,,) if needed."
+      "Describe the tests users can do with your project. Separate paragraphs with double commas (,,):"
     ),
     name: "tests",
   },
@@ -82,23 +84,6 @@ const questions = [
   },
 ];
 
-// from class activities
-// inquirer
-//   .prompt([//array of questions
-//   ])
-//   .then((response) => {
-//     // code
-
-//     fs.writeFile("log.txt", JSON.stringify(response, null, "\t"), (err) => {
-//       if (err) {
-//         console.error(err);
-//       } else {
-//         console.log("Success!");
-//       }
-//     });
-//   });
-
-
 
 // TODO: Create a function to write README file
 function writeReadme() {
@@ -108,17 +93,18 @@ function writeReadme() {
     const readmeData = {
       projectTitle: response.projectTitle,
       description: response.description.replace(/,,/g, "<br><br>"),
-      installation: response.installation,
-      usage: response.usage,
-      credits: response.credits,
-      features: response.features,
-      contributing: response.contributing,
-      tests: response.tests,
+      installation: response.installation.replace(/,,/g, "<br><br>"),
+      usage: response.usage.replace(/,,/g, "<br><br>"),
+      credits: response.credits.replace(/,,/g, "<br><br>"),
+      features: response.features.replace(/,,/g, "<br><br>"),
+      contributing: response.contributing.replace(/,,/g, "<br><br>"),
+      tests: response.tests.replace(/,,/g, "<br><br>"),
       license: response.license,
       gitUsername: response.gitUsername,
-      email: response.email
+      email: response.email,
     };
-    // using <br><br> instead of double trailing spaces; test output
+
+    // using <br><br> instead of double trailing spaces
     // build README
     let inputString = `#${readmeData.projectTitle}<br><br>
     ##Description<br><br>${readmeData.description}<br><br>
@@ -155,7 +141,6 @@ function writeReadme() {
             console.log("Success!");
         }
         });
-    //   inputString += `##Badges<br><br>${readmeData.badges}<br><br>`;
     } else if (readmeData.license == "GNU General Public License v3.0") {
         const gnuBadge = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`;
         const newString = `${gnuBadge}\n\n${inputString}`;
@@ -190,20 +175,6 @@ function writeReadme() {
         }
         });
     }
-
-    /** "Apache License 2.0",
-      "GNU General Public License v3.0",
-      "ISC license",
-      "MIT license", */
-
-    //   move to IF statements?
-    // fs.writeFile("proREADME.md", newString, (err) => {
-    //     if (err) {
-    //         console.error(err);
-    //     } else {
-    //         console.log("Success!");
-    //     }
-    // });
 
   });
 }
