@@ -138,7 +138,7 @@ function writeReadme() {
         if (err) {
             console.error(err);
         } else {
-            console.log("Success!");
+            console.log("Your professional README file had been created!");
         }
         });
     } else if (readmeData.license == "GNU General Public License v3.0") {
@@ -149,7 +149,7 @@ function writeReadme() {
         if (err) {
             console.error(err);
         } else {
-            console.log("Success!");
+            console.log("Your professional README file had been created!");
         }
         });
     } else if (readmeData.license == "ISC license") {
@@ -160,7 +160,7 @@ function writeReadme() {
         if (err) {
             console.error(err);
         } else {
-            console.log("Success!");
+            console.log("Your professional README file had been created!");
         }
         });
     } else {
@@ -171,7 +171,7 @@ function writeReadme() {
         if (err) {
             console.error(err);
         } else {
-            console.log("Success!");
+            console.log("Your professional README file had been created!");
         }
         });
     }
