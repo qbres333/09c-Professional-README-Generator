@@ -125,7 +125,7 @@ function writeReadme() {
 ## Contributing<br><br>${readmeData.contributing}<br><br>
 ## Tests<br><br>${readmeData.tests}<br><br>
 ## License<br><br>This application uses the ${readmeData.license}<br><br>
-## Questions<br><br>GitHub Profile: https://github.com/${readmeData.gitUsername}<br><br>
+## Questions<br><br>GitHub Profile: https://github.com/${readmeData.gitUsername}<br>
 If you have additional questions, please contact me at ${readmeData.email}
 `;
 
