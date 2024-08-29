@@ -10,8 +10,12 @@ This app allows you to quickly and easily create a README file through a  comman
 
 This app was developed for use within the Visual Studio Code terminal. It requires the installation of Node.js to run the app in the terminal.
 
-The Screencast video can be accessed here:
-https://app.screencastify.com/v2/manage/videos/6VZmQg0qFeJv12kpvP5r
+A link to the demo can be access in the repo here:
+
+<video controls>
+<source src="./video/09c_README_demo.mp4" type="video/mp4">
+Error loading video in browser.
+</video>
 
 The online repository with all code files can be accessed here:
 https://github.com/qbres333/09c-Professional-README-Generator
