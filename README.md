@@ -24,9 +24,7 @@ User can enter data into the terminal using the instructions presented, and will
 
 This app will help developers create an important part of their project without having the exit the development environment.
 
-```md
-    ![app preview](assets/images/README_generator_preview.png)
-    ```
+```md![app preview](assets/images/README_generator_preview.png)```
 
 ## Credits
 License Badges:
