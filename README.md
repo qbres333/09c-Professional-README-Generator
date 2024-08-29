@@ -17,6 +17,13 @@ A link to the demo can be access in the repo here:
 Error loading video in browser.
 </video>
 
+or here:
+<video controls>
+<source src="https://github.com/qbres333/09c-Professional-README-Generator/tree/main/assets/video/video/09c_README_demo.mp4" type="video/mp4">
+Error loading video in browser.
+</video>
+
+
 The online repository with all code files can be accessed here:
 https://github.com/qbres333/09c-Professional-README-Generator
 
