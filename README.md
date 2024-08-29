@@ -10,19 +10,8 @@ This app allows you to quickly and easily create a README file through a  comman
 
 This app was developed for use within the Visual Studio Code terminal. It requires the installation of Node.js to run the app in the terminal.
 
-A link to the demo can be access in the repo here:
-
-<video controls>
-<source src="./video/09c_README_demo.mp4" type="video/mp4" title="App Demo">
-Error loading video in browser.
-</video>
-
-or here:
-<video controls>
-<source src="https://github.com/qbres333/09c-Professional-README-Generator/tree/main/assets/video/video/09c_README_demo.mp4" type="video/mp4" title="App Demo">
-Error loading video in browser.
-</video>
-
+A link to the demo can be accessed here:
+https://drive.google.com/file/d/15CGKLi5tlaZJJJcvvEvHNElMIs1DrCz1/view?usp=sharing
 
 The online repository with all code files can be accessed here:
 https://github.com/qbres333/09c-Professional-README-Generator
