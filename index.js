@@ -108,26 +108,26 @@ function writeReadme() {
     // in the TOC, the anchor syntax is all lowercase and replaces spaces with hyphens
     // build README
     let inputString = `# ${readmeData.projectTitle}<br><br>
-    ## Description<br><br>${readmeData.description}<br><br>
-    ## Table of Contents<br><br>
-    - [Installation] (#installation)<br>
-    - [Usage] (#usage)<br>
-    - [Credits] (#credits)<br>
-    - [Features] (#features)<br>
-    - [Contributing] (#contributing)<br>
-    - [Tests] (#tests)<br>
-    - [License] (#license)<br>
-    - [Questions] (#questions)<br><br>
-    ## Installation<br><br>${readmeData.installation}<br><br>
-    ## Usage<br><br>${readmeData.usage}<br><br>
-    ## Credits<br><br>${readmeData.credits}<br><br>
-    ## Features<br><br>${readmeData.features}<br><br>
-    ## Contributing<br><br>${readmeData.contributing}<br><br>
-    ## Tests<br><br>${readmeData.tests}<br><br>
-    ## License<br><br>This application uses the ${readmeData.license}<br><br>
-    ## Questions<br><br>GitHub Profile: https://github.com/${readmeData.gitUsername}<br><br>
-    If you have additional questions, please contact me at ${readmeData.email}
-    `;
+## Description<br><br>${readmeData.description}<br><br>
+## Table of Contents<br><br>
+- [Installation] (#installation)<br>
+- [Usage] (#usage)<br>
+- [Credits] (#credits)<br>
+- [Features] (#features)<br>
+- [Contributing] (#contributing)<br>
+- [Tests] (#tests)<br>
+- [License] (#license)<br>
+- [Questions] (#questions)<br><br>
+## Installation<br><br>${readmeData.installation}<br><br>
+## Usage<br><br>${readmeData.usage}<br><br>
+## Credits<br><br>${readmeData.credits}<br><br>
+## Features<br><br>${readmeData.features}<br><br>
+## Contributing<br><br>${readmeData.contributing}<br><br>
+## Tests<br><br>${readmeData.tests}<br><br>
+## License<br><br>This application uses the ${readmeData.license}<br><br>
+## Questions<br><br>GitHub Profile: https://github.com/${readmeData.gitUsername}<br><br>
+If you have additional questions, please contact me at ${readmeData.email}
+`;
 
 
     // add a badge for the license to the top of the README file
