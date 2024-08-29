@@ -22,7 +22,7 @@ User can enter data into the terminal using the instructions presented, and will
 
 ## Usage
 
-This app will help developers create an important part of their project without having the exit the development environment.
+This app will help developers create an important part of their project without having to exit the development environment.
 
 ![app preview](assets/images/README_generator_preview.png)
 
