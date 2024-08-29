@@ -107,9 +107,9 @@ function writeReadme() {
     // using <br><br> instead of double trailing spaces
     // in the TOC, the anchor syntax is all lowercase and replaces spaces with hyphens
     // build README
-    let inputString = `#${readmeData.projectTitle}<br><br>
-    ##Description<br><br>${readmeData.description}<br><br>
-    ##Table of Contents<br><br>
+    let inputString = `# ${readmeData.projectTitle}<br><br>
+    ## Description<br><br>${readmeData.description}<br><br>
+    ## Table of Contents<br><br>
     - [Installation] (#installation)<br>
     - [Usage] (#usage)<br>
     - [Credits] (#credits)<br>
@@ -118,14 +118,14 @@ function writeReadme() {
     - [Tests] (#tests)<br>
     - [License] (#license)<br>
     - [Questions] (#questions)<br><br>
-    ##Installation<br><br>${readmeData.installation}<br><br>
-    ##Usage<br><br>${readmeData.usage}<br><br>
-    ##Credits<br><br>${readmeData.credits}<br><br>
-    ##Features<br><br>${readmeData.features}<br><br>
-    ##Contributing<br><br>${readmeData.contributing}<br><br>
-    ##Tests<br><br>${readmeData.tests}<br><br>
-    ##License<br><br>This application uses the ${readmeData.license}<br><br>
-    ##Questions<br><br>GitHub Profile: https://github.com/${readmeData.gitUsername}<br><br>
+    ## Installation<br><br>${readmeData.installation}<br><br>
+    ## Usage<br><br>${readmeData.usage}<br><br>
+    ## Credits<br><br>${readmeData.credits}<br><br>
+    ## Features<br><br>${readmeData.features}<br><br>
+    ## Contributing<br><br>${readmeData.contributing}<br><br>
+    ## Tests<br><br>${readmeData.tests}<br><br>
+    ## License<br><br>This application uses the ${readmeData.license}<br><br>
+    ## Questions<br><br>GitHub Profile: https://github.com/${readmeData.gitUsername}<br><br>
     If you have additional questions, please contact me at ${readmeData.email}
     `;
 
