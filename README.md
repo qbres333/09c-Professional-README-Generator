@@ -13,13 +13,13 @@ This app was developed for use within the Visual Studio Code terminal. It requir
 A link to the demo can be access in the repo here:
 
 <video controls>
-<source src="./video/09c_README_demo.mp4" type="video/mp4">
+<source src="./video/09c_README_demo.mp4" type="video/mp4" title="App Demo">
 Error loading video in browser.
 </video>
 
 or here:
 <video controls>
-<source src="https://github.com/qbres333/09c-Professional-README-Generator/tree/main/assets/video/video/09c_README_demo.mp4" type="video/mp4">
+<source src="https://github.com/qbres333/09c-Professional-README-Generator/tree/main/assets/video/video/09c_README_demo.mp4" type="video/mp4" title="App Demo">
 Error loading video in browser.
 </video>
 
